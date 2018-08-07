@@ -1,4 +1,4 @@
-import { set } from 'lambdagrid-mfi';
+import { ping } from 'lambdagrid-mfi';
 import React from 'react';
 import {
   Button,
@@ -70,7 +70,7 @@ function LogoutButton(props) {
   return <Button onClick={props.onLogoutButtonClick}>Logout</Button>;
 }
 
-set('ReactViews', 'views', {
+ping('ReactViews', 'set views', {
   DestinationList,
   DestinationDetail,
   PageNotFound,

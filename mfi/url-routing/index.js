@@ -1,14 +1,14 @@
-import { set } from 'lambdagrid-mfi';
+import { ping } from 'lambdagrid-mfi';
 
 const routes = {
-  '^/login$': get('Layouts', 'layout', 'login'),
-  '^/destinations$': get('Layouts', 'layout', 'main', {
-    main: get('ReactViews', 'view', 'DestinationList')
+  '^/login$': ping('Layouts', 'get layout', 'login'),
+  '^/destinations$': ping('Layouts', 'get layout', 'main', {
+    main: ping('ReactViews', 'get view', 'DestinationList')
   }),
-  '^/destinations/([^/+])$': get('Layouts', 'layout', 'main', {
-    main: get('ReactViews', 'view', 'DestinationDetail')
+  '^/destinations/([^/+])$': ping('Layouts', 'get layout', 'main', {
+    main: ping('ReactViews', 'get view', 'DestinationDetail')
   })
 };
 
-set('UrlRouting', '404', get('ReactViews', 'view', 'PageNotFound'));
-set('UrlRouting', 'routes', routes);
+ping('UrlRouting', 'set 404', ping('ReactViews', 'get view', 'PageNotFound'));
+ping('UrlRouting', 'set routes', routes);

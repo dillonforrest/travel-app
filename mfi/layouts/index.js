@@ -1,4 +1,4 @@
-import { set } from 'lambdagrid-mfi';
+import { ping } from 'lambdagrid-mfi';
 import React from 'react';
 
 function login() {
@@ -31,4 +31,4 @@ const layouts = {
   pageNotFound,
 };
 
-set('Layouts', 'layouts', layouts);
+ping('Layouts', 'set layouts', layouts);

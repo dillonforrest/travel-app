@@ -1,12 +1,12 @@
-import { set } from 'lambdagrid-mfi';
+import { ping } from 'lambdagrid-mfi';
 import { fromJS } from 'immutable';
 import updaters from './updaters.js';
 import persisters from './persisters.js';
 
-set('AppState', 'updaters', updaters);
-set('AppState', 'storage', 'localStorage');
-set('AppState', 'persistedPaths', persisters);
-set('AppState', 'initialState', fromJS({
+ping('AppState', 'set updaters', updaters);
+ping('AppState', 'set storage', 'localStorage');
+ping('AppState', 'set persisted paths', persisters);
+ping('AppState', 'set initial state', fromJS({
   userAuth: {
     token: null,
     id: null,
