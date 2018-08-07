@@ -1,11 +1,11 @@
 import { set } from 'lambdagrid-mfi';
 
 const routes = {
-  '^/login$': get('Layouts', 'login'),
-  '^/destinations$': get('Layouts', 'main', {
+  '^/login$': get('Layouts', 'layout', 'login'),
+  '^/destinations$': get('Layouts', 'layout', 'main', {
     main: get('ReactViews', 'view', 'destinationList')
   }),
-  '^/destinations/([^/+])$': get('Layouts', 'main', {
+  '^/destinations/([^/+])$': get('Layouts', 'layout', 'main', {
     main: get('ReactViews', 'view', 'destinationDetail')
   })
 };
