@@ -9,7 +9,8 @@ import {
 function DestinationItem(props) {
   return (<li>
     <Checkbox checked={props.visited} onChange={props.toggleVisited}>
-      <a href={`${props.currentPath}/${props.name}`}>{props.name}</a>
+      <a href={`${props.currentPath}/${props.index}`}>{props.name}</a>
+      <a href="" onClick={props.removeDestination}>remove</a>
     </Checkbox>
   </li>);
 }
@@ -21,7 +22,7 @@ function DestinationList(props) {
       <FieldGroup
         id="newDestination"
         type="text"
-        onChange={props.onNewDestinationChange}
+        onChange={props.onNewDestinationKeyPress}
         value={props.newDestination}
       />
     </form>

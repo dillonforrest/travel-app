@@ -15,6 +15,18 @@ function removeDestination(state, index) {
   return state.removeIn(['destinations', index]);
 }
 
+function updateDestination(state, index, updated) {
+  return state.updateIn(['destinations', index, 'name'], () => updated);
+}
+
+function updateNewDestination(state, updated) {
+  return state.update('newDestination', updated);
+}
+
+function cancelNewDestination(state) {
+  return state.update('newDestination', '');
+}
+
 function toggleVisited(state, index) {
   return state.updateIn(['destinations', index, 'visited'], v => !v);
 }

@@ -2,7 +2,7 @@ import { ping } from 'lambdagrid-mfi';
 import React from 'react';
 
 function login() {
-  const loginView = get('ReactView', 'views', 'Login');
+  const loginView = ping('ReactView', 'get view', 'Login');
   return function(props) {
     const style = { width: 400, marginLeft: 'auto', marginRight: 'auto' };
     return <div style={style}>{loginView(props)}</div>;
@@ -10,7 +10,7 @@ function login() {
 }
 
 function main(mainView) {
-  const logoutButton = get('ReactView', 'views', 'LogoutButton');
+  const logoutButton = ping('ReactView', 'view', 'LogoutButton');
   return function(props) {
     return (<div>
       {mainView(props)}

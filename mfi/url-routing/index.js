@@ -3,10 +3,10 @@ import { ping } from 'lambdagrid-mfi';
 const routes = {
   '^/login$': ping('Layouts', 'get layout', 'login'),
   '^/destinations$': ping('Layouts', 'get layout', 'main', {
-    main: ping('ReactViews', 'get view', 'DestinationList')
+    main: ping('Pagelets', 'get pagelet', 'DestinationList')
   }),
   '^/destinations/([^/+])$': ping('Layouts', 'get layout', 'main', {
-    main: ping('ReactViews', 'get view', 'DestinationDetail')
+    main: ping('Pagelets', 'get pagelet', 'DestinationDetail')
   })
 };
 

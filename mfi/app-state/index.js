@@ -11,5 +11,6 @@ ping('AppState', 'set initial state', fromJS({
     token: null,
     id: null,
   },
-  destinations: []
+  destinations: [],
+  newDestination: '',
 }));
