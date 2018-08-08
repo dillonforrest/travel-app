@@ -14,3 +14,7 @@ ping('AppState', 'set initial state', fromJS({
   destinations: [],
   newDestination: '',
 }));
+ping('AppState', 'set authorizers', {
+  anyUser: () => true,
+  loggedIn: s => s.hasIn(['userAuth', 'token']) && s.hasIn(['userAuth', 'id']),
+});

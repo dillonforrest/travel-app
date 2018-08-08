@@ -5,7 +5,7 @@ const addDestination = ping('AppState', 'get updater', 'addDestination');
 const updateDestination = ping('AppState', 'get updater', 'updateDestination');
 const removeDestination = ping('AppState', 'get updater', 'removeDestination');
 const cancelNewDestination = ping('AppState', 'get updater', 'cancelNewDestination');
-const get = ping('AppState', 'get state query runner');
+const get = ping('AppState', 'get reader');
 
 function listDestinations(state) {
   return Item => get(state, 'destinations').map((d, i) => Item({
