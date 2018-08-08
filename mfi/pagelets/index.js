@@ -5,16 +5,17 @@ const addDestination = ping('AppState', 'get updater', 'addDestination');
 const updateDestination = ping('AppState', 'get updater', 'updateDestination');
 const removeDestination = ping('AppState', 'get updater', 'removeDestination');
 const cancelNewDestination = ping('AppState', 'get updater', 'cancelNewDestination');
+const get = ping('AppState', 'get state query runner');
 
 function listDestinations(state) {
-  return Item => state.get('destinations').map((d, i) => Item({
-    visited: d.get('visited'),
+  return Item => get(state, 'destinations').map((d, i) => Item({
+    visited: get(d, 'visited'),
     toggleVisited: () => toggleVisited(i),
-    currentPath: d.get('currentPath'),
-    name: d.get('name'),
+    currentPath: get(state, 'currentPath'),
+    name: get(d, 'name'),
     index: i,
     removeDestination: () => removeDestination(i),
-  }));
+  }))
 }
 
 function onNewDestinationKeyPress(state) {
@@ -27,7 +28,7 @@ const DestinationList = ping('Pagelets', 'create pagelet', {
   transform: state => ({
     listDestinations: listDestinations(state),
     onSubmit: () => addDestination(state.get('newDestination')),
-    newDestination: state.get('newDestination'),
+    newDestination: get(state, 'newDestination'),
     onNewDestinationKeyPress: onNewDestinationKeyPress(state),
   }),
 });
@@ -37,8 +38,8 @@ function getId(path) {
 }
 
 function listPictures(state) {
-  const path = ['destinations', getId(state.get('currentPath')), 'pictures'];
-  return (DestinationPicture) => state.get(path).map((pic, index) => DestinationPicture({
+  const path = ['destinations', getId(get(state, 'currentPath')), 'pictures'];
+  return (DestinationPicture) => get(state, path).map((pic, index) => DestinationPicture({
     src: pic.get('src'),
   })),
 }
@@ -48,7 +49,7 @@ const DestinationDetail = ping('Pagelets', 'create pagelet', {
   view: ping('ReactViews', 'get view', 'DestinationDetail'),
   transform: state => ({
     onSubmit: updateDestination(getId(state.get('currentPath'))),
-    name: state.getIn(['destinations', getId(state.get('currentPath')), 'name']),
+    name: get(state, 'destinations', getId(state.get('currentPath')), 'name'),
     listPictures: listPictures(['destinations', getId(state.get('currentPath')), 'pictures']),
   }),
 });
